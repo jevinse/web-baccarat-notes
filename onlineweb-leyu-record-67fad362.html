@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐鱼 · 知识库简明指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f9fc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2b3a;
+            line-height: 1.6;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* header / hero 区 —— 更偏知识库入口感 */
+        .hero {
+            background: linear-gradient(145deg, #124353 0%, #1e6d7a 100%);
+            border-radius: 2rem 2rem 1rem 1rem;
+            padding: 2.8rem 2rem 2.8rem 2rem;
+            margin-bottom: 2.8rem;
+            color: white;
+            box-shadow: 0 12px 28px -8px rgba(18, 67, 83, 0.25);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 0.1rem 0.6rem;
+            border-radius: 40px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 680px;
+            margin-bottom: 1.6rem;
+        }
+
+        .hero .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .hero .badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(2px);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* 网格卡片 目录感 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 960px) {
+            .grid-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.6rem;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 6px 16px rgba(0, 20, 30, 0.04);
+            border: 1px solid #e3edf2;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 28px -4px rgba(18, 67, 83, 0.12);
+            border-color: #b6d4dd;
+            transform: translateY(-2px);
+        }
+
+        .card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+            display: inline-block;
+            background: #ddeef3;
+            width: 3rem;
+            height: 3rem;
+            line-height: 3rem;
+            text-align: center;
+            border-radius: 1rem;
+            color: #1b6e7c;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0.6rem 0 0.5rem 0;
+            color: #123a45;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2f4452;
+            margin-bottom: 0.3rem;
+        }
+
+        .card .small-link {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+            color: #1b7a8a;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #7db7c4;
+        }
+
+        .card .small-link:hover {
+            color: #0d4c59;
+            border-bottom: 1px solid #0d4c59;
+        }
+
+        /* 说明区 + 提示区 (合并为灵活两栏) */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        @media (min-width: 700px) {
+            .info-panel {
+                flex-direction: row;
+            }
+            .info-panel > * {
+                flex: 1;
+            }
+        }
+
+        .panel-box {
+            background: white;
+            border-radius: 1.6rem;
+            padding: 1.8rem 1.6rem;
+            border-left: 6px solid;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .panel-box.bluegreen {
+            border-left-color: #1f8a9b;
+            background: #f5fbfe;
+        }
+
+        .panel-box.teal {
+            border-left-color: #2c9c7c;
+            background: #f3faf8;
+        }
+
+        .panel-box h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .panel-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .panel-box li {
+            margin-bottom: 0.6rem;
+            padding-left: 1.2rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .panel-box li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #1b8a7a;
+            font-weight: bold;
+        }
+
+        .panel-box .highlight {
+            background: #d5eae6;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            font-weight: 500;
+            color: #10443b;
+        }
+
+        /* FAQ 摘要区 —— 简洁折叠感 */
+        .faq-summary {
+            background: white;
+            border-radius: 1.6rem;
+            padding: 1.8rem 1.6rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            border: 1px solid #dae6ec;
+        }
+
+        .faq-summary h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #154652;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
+        }
+
+        .faq-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e6f0f4;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-item q {
+            font-weight: 600;
+            color: #1d5b67;
+            display: block;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #2b4a57;
+            margin-top: 0.1rem;
+        }
+
+        .faq-item .tag {
+            background: #d8edf2;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            color: #136271;
+            margin-left: 0.5rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* 相关信息区 + 链接自然嵌入 */
+        .related-info {
+            background: #edf6f9;
+            border-radius: 1.6rem;
+            padding: 1.8rem 1.6rem;
+            margin-bottom: 2rem;
+            border: 1px solid #c7dde6;
+        }
+
+        .related-info h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0b424f;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .related-info .sentence-link {
+            background: white;
+            padding: 1rem 1.2rem;
+            border-radius: 1.2rem;
+            border-left: 4px solid #1b8a9b;
+            font-size: 0.98rem;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .related-info .sentence-link a {
+            color: #126d7c;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid #7eb8c4;
+        }
+
+        .related-info .sentence-link a:hover {
+            color: #0a4b57;
+            border-bottom: 2px solid #0a4b57;
+        }
+
+        .footnote {
+            font-size: 0.8rem;
+            color: #4a6a78;
+            text-align: center;
+            border-top: 1px solid #cfe0e8;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, #cde0e8, transparent);
+            margin: 2rem 0 1.5rem;
+        }
+
+        /* 小屏优化 */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+            .panel-box {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero / 知识库入口标题 -->
+    <div class="hero">
+        <h1>📘 乐鱼 · 简明知识库</h1>
+        <p>从基础到场景，一份结构化的访问指南与操作提醒。适合新用户快速建立认知，也适合日常查阅。</p>
+        <div class="badge-group">
+            <span class="badge">🧭 目录式入口</span>
+            <span class="badge">⚡ 高频提醒</span>
+            <span class="badge">📌 场景速览</span>
+            <span class="badge">🔐 安全备忘</span>
+        </div>
+    </div>
+
+    <!-- 网格卡片 —— 目录感 + 特点/场景 -->
+    <div class="grid-cards">
+        <div class="card">
+            <div class="icon">🗂️</div>
+            <h3>平台概览</h3>
+            <p>服务模块、功能分布与基础术语。通过简明分类快速定位所需区域，减少摸索时间。</p>
+            <a href="https://onlineweb-leyu.com" class="small-link">乐鱼</a>
+        </div>
+        <div class="card">
+            <div class="icon">🧩</div>
+            <h3>使用场景</h3>
+            <p>日常登录、信息查询、内容交互等常见流程。每个场景附带操作要点与注意事项。</p>
+            <span class="small-link" style="cursor:default; opacity:0.6;">场景手册 …</span>
+        </div>
+        <div class="card">
+            <div class="icon">⚙️</div>
+            <h3>设置与偏好</h3>
+            <p>账号关联、通知管理、界面语言与安全验证等配置项，集中管理更高效。</p>
+            <span class="small-link" style="cursor:default; opacity:0.6;">配置指引</span>
+        </div>
+        <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>安全准则</h3>
+            <p>密码强度、双重验证、会话管理、设备授权等基础安全策略。</p>
+            <span class="small-link" style="cursor:default; opacity:0.6;">安全清单</span>
+        </div>
+        <div class="card">
+            <div class="icon">📎</div>
+            <h3>常见问题摘要</h3>
+            <p>访问延迟、界面适配、验证异常、账户恢复等高频疑问的简要处理方向。</p>
+            <span class="small-link" style="cursor:default; opacity:0.6;">FAQ 速查</span>
+        </div>
+        <div class="card">
+            <div class="icon">🔗</div>
+            <h3>相关资源</h3>
+            <p>官方说明、版本动态、协议摘要及社区讨论索引。</p>
+            <span class="small-link" style="cursor:default; opacity:0.6;">资源集</span>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 (两栏布局) 信息密度高 -->
+    <div class="info-panel">
+        <div class="panel-box bluegreen">
+            <h4>📋 说明 · 使用前了解</h4>
+            <ul>
+                <li><span class="highlight">环境要求</span> 建议使用现代浏览器并保持系统时间同步，避免证书或会话校验异常。</li>
+                <li><span class="highlight">账户准备</span> 首次使用需完成注册与邮箱/手机验证，建议开启双重认证。</li>
+                <li><span class="highlight">服务范围</span> 平台功能根据区域与版本可能存在差异，以实际界面为准。</li>
+                <li><span class="highlight">数据更新</span> 知识库内容随版本迭代，建议定期浏览最新说明。</li>
+            </ul>
+        </div>
+        <div class="panel-box teal">
+            <h4>⚠️ 提示 · 访问与操作提醒</h4>
+            <ul>
+                <li>始终通过地址栏手动输入或已知可信入口访问，谨防仿冒站点。</li>
+                <li>避免在公共设备上保存登录凭证；离开时务必注销账户。</li>
+                <li>如遇页面加载异常，先检查网络与防火墙设置，或尝试更换 DNS。</li>
+                <li>密码建议使用独立且高复杂度组合，并定期更换。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 —— 简洁问答风格 -->
+    <div class="faq-summary">
+        <h4>❓ 知识库 FAQ 摘要</h4>
+        <div class="faq-item">
+            <q>为什么有时候页面响应较慢？</q>
+            <p>可能原因：本地网络波动、CDN 节点缓存、或同时在线人数较高。可尝试刷新或稍后重试。<span class="tag">连接</span></p>
+        </div>
+        <div class="faq-item">
+            <q>如何在移动端获得更好体验？</q>
+            <p>推荐使用系统自带浏览器或 Chromium 内核浏览器；横屏模式可能适配部分模块。<span class="tag">移动端</span></p>
+        </div>
+        <div class="faq-item">
+            <q>账户锁定/验证失败如何处理？</q>
+            <p>通过绑定的邮箱或手机号进行找回/重置操作；如持续失败建议联系服务支持。<span class="tag">账户</span></p>
+        </div>
+        <div class="faq-item">
+            <q>知识库是否覆盖所有功能？</q>
+            <p>知识库以常用功能和稳定模块为主，部分实验性功能可能未收录。持续扩充中。<span class="tag">覆盖</span></p>
+        </div>
+    </div>
+
+    <!-- 相关信息区 —— 自然嵌入 a 标签 且可见文本 = 「乐鱼」 -->
+    <div class="related-info">
+        <h5>📎 相关信息</h5>
+        <div class="sentence-link">
+            🔹 想要直接访问平台并浏览完整功能？ 可前往 <a href="https://onlineweb-leyu.com">乐鱼</a> 获取最新版本与官方界面。建议将该地址加入浏览器书签以便日常使用。
+        </div>
+        <div class="sentence-link">
+            🔹 如果遇到页面指向问题，请确认所访问的域名是否为 <a href="https://onlineweb-leyu.com">乐鱼</a> 的官方地址。知识库中的所有引用均基于该主站。
+        </div>
+        <div style="margin-top: 1rem; font-size:0.9rem; background: #f9fdfe; padding: 0.8rem 1.2rem; border-radius: 1rem;">
+            📌 更多深度指南、版本更新和操作案例将持续整合到知识库中。当前页面作为索引入口，帮助快速定位内容。
+        </div>
+    </div>
+
+    <hr>
+    <div class="footnote">
+        简明知识库 · 内容仅供参考 · 具体操作请以实际界面为准 · 定期更新
+    </div>
+
+</div>
+</body>
+</html>
