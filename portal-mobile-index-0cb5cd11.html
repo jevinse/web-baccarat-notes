@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼 · 主题信息卡片</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #ffe7d9 0%, #ffd6b5 40%, #fdcba0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+    }
+
+    .page-wrapper {
+      max-width: 1280px;
+      width: 100%;
+    }
+
+    /* 主视觉卡片 ———— 暖白色大卡 */
+    .hero-card {
+      background: #fffcf8;
+      border-radius: 48px;
+      padding: 48px 40px 40px;
+      box-shadow: 0 20px 40px -10px rgba(190, 100, 40, 0.20), 0 8px 16px rgba(0,0,0,0.03);
+      margin-bottom: 36px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .hero-card:hover {
+      box-shadow: 0 24px 48px -12px rgba(180, 80, 30, 0.25);
+    }
+
+    .hero-title {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #37281e;
+      line-height: 1.2;
+      border-left: 8px solid #f19b5e;
+      padding-left: 24px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title span {
+      display: inline-block;
+      background: #fbeddf;
+      padding: 0 14px 0 10px;
+      border-radius: 40px;
+      color: #865a34;
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 1.4;
+    }
+
+    .hero-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #433529;
+      max-width: 780px;
+      margin-bottom: 16px;
+    }
+
+    .hero-text a {
+      color: #b16531;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #f5c8a8;
+      padding: 0 2px;
+      transition: all 0.2s;
+    }
+
+    .hero-text a:hover {
+      color: #7f4c26;
+      border-bottom-color: #b16531;
+      background-color: #fde7d5;
+      border-radius: 12px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      font-size: 0.95rem;
+      color: #7a634f;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px dashed #e3cdb9;
+    }
+
+    .hero-meta-item {
+      background: #f5e7db;
+      border-radius: 40px;
+      padding: 6px 16px;
+      display: inline-block;
+      font-weight: 450;
+    }
+
+    /* 卡片网格 — 用途卡片 + 适合人群卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin: 48px 0;
+    }
+
+    @media (max-width: 780px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .card {
+      background: #fffffffa;
+      backdrop-filter: blur(2px);
+      border-radius: 40px;
+      padding: 36px 32px 32px;
+      box-shadow: 0 8px 20px -8px rgba(130, 70, 30, 0.12);
+      transition: transform 0.2s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px -10px rgba(150, 75, 30, 0.16);
+    }
+
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #3e2b1e;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-title .emoji-badge {
+      background: #f0d3be;
+      width: 44px;
+      height: 44px;
+      border-radius: 100px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      color: #4f3a2b;
+      line-height: 1.7;
+      font-size: 1.05rem;
+      margin-bottom: 16px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 4px;
+    }
+
+    .card li {
+      padding: 6px 0 6px 28px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23b9774b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+      background-size: 18px;
+      margin-bottom: 6px;
+      color: #5c4232;
+    }
+
+    .card-highlight {
+      background: #faf1e9;
+      border-radius: 60px;
+      padding: 14px 22px;
+      display: inline-block;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #704f32;
+      margin-top: 10px;
+    }
+
+    /* 自然链接段落卡片 (混合内容) */
+    .link-paragraph-card {
+      background: #fff9f4;
+      border-radius: 44px;
+      padding: 40px 38px;
+      margin: 44px 0 32px;
+      box-shadow: 0 8px 20px -6px rgba(140, 80, 30, 0.1);
+    }
+
+    .link-paragraph-card h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #412f21;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .link-paragraph-card p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #3d2e21;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+
+    .link-paragraph-card a {
+      color: #a25f2e;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #eacbb3;
+      padding: 0 3px;
+      transition: background 0.15s, border-color 0.2s;
+    }
+
+    .link-paragraph-card a:hover {
+      background: #f1d5bd;
+      border-bottom-color: #ac6839;
+      border-radius: 12px;
+    }
+
+    /* FAQ 摘要 — 轻量折叠感 */
+    .faq-mini {
+      background: #fffbf7;
+      border-radius: 44px;
+      padding: 32px 36px 28px;
+      margin: 36px 0 20px;
+      border: 1px solid #f2decb;
+    }
+
+    .faq-mini h4 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #412d1e;
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+    }
+
+    .faq-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #f0dcc9;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      color: #4f3726;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .faq-question::before {
+      content: "▹";
+      color: #c6834e;
+    }
+
+    .faq-answer {
+      color: #5c4838;
+      line-height: 1.6;
+      padding-left: 26px;
+      font-size: 0.98rem;
+    }
+
+    .faq-answer a {
+      color: #9f5f30;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #d6b397;
+    }
+
+    .faq-answer a:hover {
+      color: #6d4428;
+      text-decoration-color: #a66a3d;
+    }
+
+    /* 附加提示（极简） */
+    .gentle-note {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #755e4b;
+      background: #f6e6d9;
+      border-radius: 100px;
+      padding: 14px 28px;
+      display: inline-block;
+      margin: 20px auto 10px;
+      max-width: 90%;
+      letter-spacing: 0.2px;
+    }
+
+    .footer-spacer {
+      height: 12px;
+    }
+
+    @media (max-width: 540px) {
+      .hero-card {
+        padding: 32px 24px;
+      }
+      .hero-title {
+        font-size: 2rem;
+        padding-left: 16px;
+      }
+      .hero-title span {
+        font-size: 1.6rem;
+      }
+      .card {
+        padding: 28px 24px;
+      }
+      .link-paragraph-card {
+        padding: 30px 24px;
+      }
+      .faq-mini {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- 主视觉卡片 -->
+  <div class="hero-card">
+    <div class="hero-title">
+      关于<span>乐鱼</span> 的主题整理
+    </div>
+    <div class="hero-text">
+      从信息、互动与内容聚合的角度来看，<a href="https://portal-mobile-leyu.com">乐鱼</a> 是一处持续更新的数字空间。围绕轻量资讯与社区化内容，页面结构偏向直观、可浏览，适合日常信息获取与兴趣探索。
+    </div>
+    <div class="hero-meta">
+      <span class="hero-meta-item">📌 主题聚合</span>
+      <span class="hero-meta-item">📁 卡片式展示</span>
+      <span class="hero-meta-item">🔍 低门槛浏览</span>
+    </div>
+  </div>
+
+  <!-- 用途卡片 + 适合人群卡片  并排 -->
+  <div class="card-grid">
+    <!-- 用途卡片 -->
+    <div class="card">
+      <div class="card-title">
+        <span class="emoji-badge">📋</span> 用途与场景
+      </div>
+      <p>内容组织以分类和列表为主，适合快速浏览特定主题下的资讯或讨论。常用于：</p>
+      <ul>
+        <li>查阅兴趣领域内的聚合信息</li>
+        <li>参与轻量化的互动与内容反馈</li>
+        <li>跟随更新节奏，获取近期动态</li>
+        <li>体验移动端适配的浏览流程</li>
+      </ul>
+      <div class="card-highlight">🧩 场景举例：日常内容浏览、兴趣发现</div>
+    </div>
+
+    <!-- 适合人群卡片 -->
+    <div class="card">
+      <div class="card-title">
+        <span class="emoji-badge">👥</span> 适合人群
+      </div>
+      <p>无论是偶尔浏览内容的使用者，还是习惯在移动端获取信息的用户，都能找到合适的阅读节奏。</p>
+      <ul>
+        <li>偏好简洁移动界面的浏览者</li>
+        <li>希望快速浏览主题分类的访客</li>
+        <li>对整合式信息展示感兴趣的用户</li>
+        <li>想要体验不同内容组织方式的人</li>
+      </ul>
+      <div class="card-highlight">✅ 低操作门槛，自适应布局</div>
+    </div>
+  </div>
+
+  <!-- 自然链接段落卡片 (嵌入链接) -->
+  <div class="link-paragraph-card">
+    <h3>📎 围绕内容的自然延伸</h3>
+    <p>
+      当你从某个主题页面开始浏览，可能会发现相关话题被归入相近的板块中。这种结构让信息之间产生自然的连接，而不需要额外跳转太多层级。如果你对某个方向产生兴趣，直接通过<a href="https://portal-mobile-leyu.com">乐鱼</a>的导航或分类入口即可继续深入；整个过程保持平缓的阅读流，没有过多干扰。
+    </p>
+    <p>
+      另外，部分内容会以卡片或摘要形式呈现，方便快速判断是否继续阅读。整体的节奏由你自己控制，这也是这种内容展示方式的一个特点。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 （轻量问答） -->
+  <div class="faq-mini">
+    <h4>常见想法 · 简短说明</h4>
+    <div class="faq-item">
+      <div class="faq-question">内容更新频率如何？</div>
+      <div class="faq-answer">保持不定期的内容补充与调整，具体主题的更新节奏视信息来源而定。你可以通过首页或分类页看到近期变动。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">移动端体验有什么不同？</div>
+      <div class="faq-answer">页面针对移动设备做了布局优化，卡片和按钮尺寸适配手指操作，文字大小也做了相应调整。访问 <a href="https://portal-mobile-leyu.com">乐鱼</a> 时，可以直接感受这种适配后的浏览方式。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">是否需要注册或登录？</div>
+      <div class="faq-answer">浏览内容无需注册，部分互动或个性化功能可能涉及账号，以页面实际提示为准。</div>
+    </div>
+  </div>
+
+  <!-- 平实提示条（氛围） -->
+  <div class="gentle-note">
+    ⚡ 本页为信息介绍卡片 · 内容方向围绕主题整理展开
+  </div>
+  <div class="footer-spacer"></div>
+
+</div>
+</body>
+</html>
