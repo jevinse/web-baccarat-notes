@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐鱼 · 稳定访问与功能介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9fafb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e293b;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 720px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            padding: 2.8rem 2rem;
+            transition: box-shadow 0.2s;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 0.8rem 0.6rem;
+            }
+            .page {
+                padding: 2rem 1.2rem;
+                border-radius: 24px;
+            }
+        }
+
+        /* 标题层级 — 清晰、留白大 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 2.2rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+            font-weight: 400;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 500;
+            margin-top: 2.6rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            border-bottom: 1px solid #e9edf2;
+            padding-bottom: 0.4rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-top: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: #334155;
+        }
+
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px dotted #94a3b8;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            color: #1d4ed8;
+            border-bottom-color: #2563eb;
+        }
+
+        /* 卡片组 — 极简留白，轻阴影 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin: 1.6rem 0 0.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 20px;
+            padding: 1.5rem 1.6rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-title::before {
+            content: "▹";
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #475569;
+            margin: 0.3rem 0 0;
+        }
+
+        /* 小标签 / 列表样式 */
+        .tag-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 0.8rem;
+            margin: 1rem 0 1.4rem;
+        }
+
+        .tag-list li {
+            background: #f1f5f9;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #1e293b;
+            letter-spacing: 0.01em;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-answer {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            margin: 2rem 0 1rem;
+            border: 0;
+            height: 1px;
+            background: #e9edf2;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-top: 2.8rem;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 1.6rem;
+            text-align: center;
+        }
+
+        /* 一个自然出现的链接句子，特殊标识 */
+        .mention-link {
+            background: #f8fafc;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-weight: 450;
+        }
+
+        .inline-badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: #2563eb;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 16px;
+            margin-left: 0.3rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h1>乐鱼 · 一个稳定的信息入口</h1>
+    <div class="subhead">清晰说明 · 功能卡片 · 适用场景</div>
+
+    <!-- 主视觉 / 简述 -->
+    <p>
+        在日常使用中，一个可靠的链接意味着更少的中断和更清晰的操作路径。
+        <a href="https://portal-online-leyu.com">乐鱼</a> 
+        作为长期维护的服务页面，提供统一的功能聚合与引导。
+        以下从用途、适合人群与常见问题三个角度，整理了一份说明，方便你快速了解。
+    </p>
+
+    <!-- 卡片区域：用途与特点 -->
+    <h2>用途卡片 · 稳定与易读</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-title">统一访问点</div>
+            <p>将常用功能集中在一个页面，避免四处翻找。每次进入都是同样的结构，减少认知负担。</p>
+        </div>
+        <div class="card">
+            <div class="card-title">信息分层呈现</div>
+            <p>采用清晰的标题与卡片布局，把核心操作、说明和辅助内容区分开，阅读节奏由你控制。</p>
+        </div>
+        <div class="card">
+            <div class="card-title">轻量说明式设计</div>
+            <p>不堆砌复杂动效，文字为主，视觉为辅。适合需要快速获取信息、不被打扰的使用习惯。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群 / 典型场景 -->
+    <h2>适合人群</h2>
+    <ul class="tag-list">
+        <li>偏好简洁入口的使用者</li>
+        <li>希望减少跳转步骤的用户</li>
+        <li>日常需要快速查阅功能说明的访问者</li>
+        <li>对页面稳定性和一致性有要求的人</li>
+    </ul>
+    <p>
+        不论你是第一次接触还是经常使用，这个页面都按同一种逻辑组织。
+        如果你习惯先看说明再操作，卡片式结构会比纯列表更直观。
+    </p>
+
+    <!-- 自然链接段落 —— 第二次出现链接，但句子完全不同 -->
+    <p>
+        很多朋友会问：“有没有一个固定的页面，不用每次重新找？” 其实，<a href="https://portal-online-leyu.com">乐鱼</a> 
+        就是这样一个长期维护的地址。它不频繁更换路径，内容更新时会保持原有框架，让你每次访问都感到熟悉。
+    </p>
+
+    <!-- FAQ 摘要 -->
+    <h2>常见疑问 · 摘要</h2>
+    <div class="faq-item">
+        <div class="faq-question">这个页面主要用来做什么？</div>
+        <div class="faq-answer">用作功能说明与访问引导，结构稳定，内容定期修订。可以看作一个说明书式的页面。</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">页面会经常改版吗？</div>
+        <div class="faq-answer">不会。布局和核心信息保持一贯风格，仅在有需要时补充说明或调整细节，避免突兀变化。</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">移动设备上看会不会变形？</div>
+        <div class="faq-answer">已适配窄屏，卡片自动折行，字号和间距保持可读，体验与桌面端一致。</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 进一步说明：为什么选择这种形式 -->
+    <h3>页面设计背后的想法</h3>
+    <p>
+        信息卡片式不是为了“好看”，而是为了让眼睛能快速定位自己关心的内容。标题、卡片、标签、问答——每种元素承担一种功能。
+        这里没有动态弹窗或自动播放，只有文字和留白。如果你也喜欢这种不打扰的阅读方式，也许它适合你。
+    </p>
+    <p>
+        当然，最终目的是让你快速找到需要的部分。如果你觉得哪里还可以更清晰，欢迎反馈。
+        想再次访问时，直接记住 <a href="https://portal-online-leyu.com">乐鱼</a> 这个地址就好（再次提醒，这是一个固定的页面链接）。
+    </p>
+
+    <div class="footer-note">
+        乐鱼 · 稳定入口与说明 &nbsp;|&nbsp; 内容定期整理
+    </div>
+</div>
+</body>
+</html>
